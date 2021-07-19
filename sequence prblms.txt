@@ -1,0 +1,325 @@
+q1) use random to get single digit number
+-->
+#!/bin/bash -x
+random=$((RANDOM%9+1))
+echo $random
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence
+$ nano userandom.sh
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence
+$ ./userandom.sh
++ random=7
++ echo 7
+7
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence
+$ ./userandom.sh
++ random=3
++ echo 3
+3
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence
+$ ./userandom.sh
++ random=3
++ echo 3
+3
+
+
+q2) use random to get dice number between 1 to 6
+-->
+#!/bin/bash -x
+random=$((RANDOM%6+1))
+echo $random
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence
+$ nano dicenum.sh
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence
+$ ./dicenum.sh
++ random=5
++ echo 5
+5
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence
+$ ./
+bash: ./: Is a directory
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence
+$ ./dicenum.sh
++ random=3
++ echo 3
+3
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence
+$ ./dicenum.sh
++ random=1
++ echo 1
+1
+
+
+
+Q3) Add two number dice and print the read 
+#!/bin/bash -x
+random1=$((RANDOM%6+1))
+random2=$((RANDOM%6+1))
+
+echo $random1
+echo $random2
+
+sum=$(($random1+$random2))
+echo "sum of two random number:" $sum
+
+$ ./diceNumTwo
++ random1=5
++ random2=5
++ echo 5
+5
++ echo 5
+5
++ sum=10
++ echo 'sum of two random number:' 10
+sum of two random number: 10
+
+
+Q4) write a program that reads 5 random 2 digit values , then find their sum and the average
+-->
+1 #! /bin/bash -x
+ 2
+ 3 maxvalue=99
+ 4 minvalue=10
+ 5 for random in 1 2 3 4 5
+ 6 do
+ 7         random=$(( RANDOM%($maxvalue-$minvalue)+$minvalue+1 ))
+ 8         echo $random
+ 9         sum=$(( sum + random ))
+10         avg=$(( sum/5 ))
+11
+12 echo "The sum of 5 random number:" $sum
+13 echo "The average of 5 random number:" $avg
+14 done
+
+output:
+	$ ./readprogram.sh
++ maxvalue=99
++ minvalue=10
++ for random in 1 2 3 4 5
++ random=78
++ echo 78
+78
++ sum=78
++ avg=15
++ echo 'The sum of 5 random number:' 78
+The sum of 5 random number: 78
++ echo 'The average of 5 random number:' 15
+The average of 5 random number: 15
++ for random in 1 2 3 4 5
++ random=28
++ echo 28
+28
++ sum=106
++ avg=21
++ echo 'The sum of 5 random number:' 106
+The sum of 5 random number: 106
++ echo 'The average of 5 random number:' 21
+The average of 5 random number: 21
++ for random in 1 2 3 4 5
++ random=14
++ echo 14
+14
++ sum=120
++ avg=24
++ echo 'The sum of 5 random number:' 120
+The sum of 5 random number: 120
++ echo 'The average of 5 random number:' 24
+The average of 5 random number: 24
++ for random in 1 2 3 4 5
++ random=29
++ echo 29
+29
++ sum=149
++ avg=29
++ echo 'The sum of 5 random number:' 149
+The sum of 5 random number: 149
++ echo 'The average of 5 random number:' 29
+The average of 5 random number: 29
++ for random in 1 2 3 4 5
++ random=74
++ echo 74
+74
++ sum=223
++ avg=44
++ echo 'The sum of 5 random number:' 223
+The sum of 5 random number: 223
++ echo 'The average of 5 random number:' 44
+The average of 5 random number: 44
+
+Q5) write a program that reads %5 random 3 digit values and then outputs the minimum and the maximum value
+--> 
+
+#! /bin/bash -x
+
+maxvalue=999
+minvalue=100
+max=100
+min=999
+for random in 1 2 3 4 5
+do
+        random=$(( RANDOM%($maxvalue-$minvalue)+$minvalue+1 ))
+        echo $random
+        if [ $random -gt $max ]
+                then
+                         max=$random
+                         greater=$max
+                fi
+
+                if [ $random -lt $min ]
+                then
+                        min=$random
+                        lower=$min
+                fi
+
+        done
+        echo "Maximun value:"$greater
+        echo "Minimum value:"$lower
+
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence
+$ ./readprogram3.sh
++ maxvalue=999
++ minvalue=100
++ max=100
++ min=999
++ for random in 1 2 3 4 5
++ random=183
++ echo 183
+183
++ '[' 183 -gt 100 ']'
++ max=183
++ greater=183
++ '[' 183 -lt 999 ']'
++ min=183
++ lower=183
++ for random in 1 2 3 4 5
++ random=851
++ echo 851
+851
++ '[' 851 -gt 183 ']'
++ max=851
++ greater=851
++ '[' 851 -lt 183 ']'
++ for random in 1 2 3 4 5
++ random=295
++ echo 295
+295
++ '[' 295 -gt 851 ']'
++ '[' 295 -lt 183 ']'
++ for random in 1 2 3 4 5
++ random=991
++ echo 991
+991
++ '[' 991 -gt 851 ']'
++ max=991
++ greater=991
++ '[' 991 -lt 183 ']'
++ for random in 1 2 3 4 5
++ random=680
++ echo 680
+680
++ '[' 680 -gt 991 ']'
++ '[' 680 -lt 183 ']'
++ echo 'Maximun value:991'
+Maximun value:991
++ echo 'Minimum value:183'
+Minimum value:183
+
+
+Q6) write a program that takes day and month frm the comand line and prints true if day of month is between march 20 and june 20, false otherwise.
+-->
+ 1 #! /bin/bash -x
+ 2
+ 3 read -p "Enter a Date:" date
+ 4 read -p "Enter a Month:" Month
+ 5 if (( $Month <=6 & $date <=20 ))
+ 6 then
+ 7         echo $Month $date "True";
+ 8 elif (( ($Month >= 3 & $Month < 6) & ($date<31) ))
+ 9 then
+10         echo $date $Month "True";
+11 else
+12         echo "False"
+13 fi
+
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence
+$ ./ifelifmonth.sh
++ read -p 'Enter a Date:' date
+Enter a Date:25
++ read -p 'Enter a Month:' Month
+Enter a Month:7
++ ((  7 <=6 & 25 <=20  ))
++ ((  (7 >= 3 & 7 < 6) & (25<31)  ))
++ echo False
+False
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence
+$ ./ifelifmonth.sh
++ read -p 'Enter a Date:' date
+Enter a Date:26
++ read -p 'Enter a Month:' Month
+Enter a Month:4
++ ((  4 <=6 & 26 <=20  ))
++ ((  (4 >= 3 & 4 < 6) & (26<31)  ))
++ echo 26 4 True
+26 4 True
+
+
+
+
+
+Q7) write program that takes a year as input and otput the year isa leap year or not a leap year. A leap year checks for 4 digit number , divisible by 4 and not 100 unless divisible by 400
+-->
+#! /bin/bash
+        read -p "Enter the year:" year
+        if [[ $year%4 -eq 0 && $year%100 -ne 0 || $year%400 -eq 0 ]]
+        then
+                echo $year "is leap year"
+        else
+                echo  $year "is not leap year"
+        fi
+
+outut:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence
+$ ./leapyear.sh
+Enter the year:2016
+2016 is leap year
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence
+$ ./leapyear.sh
+Enter the year:2021
+2021 is not leap year
+
+Q8)write a program to simulate a coin flip and print "Heads" or "Tails" accordingly
+-->
+#!/bin/bash -x
+
+flip=$((RANDOM%2))
+if [ $flip -eq 0 ]
+then
+        echo "Head"
+else
+        echo "Tail"
+fi
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence
+$ ./headtail.sh
++ flip=0
++ '[' 0 -eq 0 ']'
++ echo Head
+Head
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence
+$ ./headtail.sh
++ flip=1
++ '[' 1 -eq 0 ']'
++ echo Tail
+Tail
+

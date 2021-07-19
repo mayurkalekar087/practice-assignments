@@ -1,0 +1,245 @@
+Q9)Q)read a single digit number and write the number in word
+-->
+#!/bin/bash -x
+read -p "Enter number upto 10:"  n
+if [ $n -eq 0 ]
+then
+        echo  "number must be greater than 0"
+elif [ $n -gt 10 ]
+then    echo "number must be less than 10"
+elif [ $n -eq 1 ]
+then    echo "one"
+elif [ $n -eq 2 ]
+then    echo "Two"
+elif [ $n -eq 3 ]
+then    echo "Three"
+elif [ $n -eq 4 ]
+then    echo "Four"
+elif [ $n -eq 5 ]
+then    echo "Five"
+elif [ $n -eq 6 ]
+then    echo "Six"
+elif [ $n -eq 7 ]
+then    echo "Seven"
+elif [ $n -eq 8 ]
+then    echo "eight"
+elif [ $n -eq 9 ]
+then    echo "Nine"
+fi
+
+output:
+$ ./singledigitnum.sh
++ read -p 'Enter number upto 10' n
+Enter number upto 105
++ '[' 5 -lt 0 ']'
++ '[' 5 -gt 10 ']'
++ '[' 5 -eq 1 ']'
++ '[' 5 -eq 2 ']'
++ '[' 5 -eq 3 ']'
++ '[' 5 -eq 4 ']'
++ '[' 5 -eq 5 ']'
++ echo Five
+Five
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence/programselection
+$ nano singledigitnum.sh
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence/programselection
+$ ./singledigitnum.sh
++ read -p 'Enter number upto 10:' n
+Enter number upto 10:9
++ '[' 9 -lt 0 ']'
++ '[' 9 -gt 10 ']'
++ '[' 9 -eq 1 ']'
++ '[' 9 -eq 2 ']'
++ '[' 9 -eq 3 ']'
++ '[' 9 -eq 4 ']'
++ '[' 9 -eq 5 ']'
++ '[' 9 -eq 6 ']'
++ '[' 9 -eq 7 ']'
++ '[' 9 -eq 8 ']'
++ '[' 9 -eq 9 ']'
++ echo Nine
+Nine
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence/programselection
+$ ./singledigitnum.sh
++ read -p 'Enter number upto 10:' n
+Enter number upto 10:11
++ '[' 11 -lt 0 ']'
++ '[' 11 -gt 10 ']'
++ echo 'number must be less than 10'
+number must be less than 10
+
+
+Q10) Read a number and display the week day (sunday,monday....)
+-->
+read -p "Enter a week day :" d
+if [ $d -lt 0 ]
+then
+        echo "Number must be greater than 0"
+elif [ $d -gt 7 ]
+then
+        echo "Number must be less than 7"
+elif [ $d -eq 1 ]
+then
+        echo "sunday"
+elif [ $d -eq 2 ]
+then
+        echo "monday"
+elif [ $d -eq 3 ]
+then
+        echo "tuesday"
+elif [ $d -eq 4 ]
+then
+        echo "wednesday"
+elif [ $d -eq 5 ]
+then
+        echo "thursday"
+elif [ $d -eq 6 ]
+then
+        echo "friday"
+elif [ $d -eq 7 ]
+then
+        echo "saturday"
+fi
+ 
+output:
+$ ./weekday.sh
++ read -p 'Enter a week day :' d
+Enter a week day :1
++ '[' 1 -lt 0 ']'
++ '[' 1 -gt 7 ']'
++ '[' 1 -eq 1 ']'
++ echo sunday
+sunday
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence/programselection
+$ ./weekday.sh
++ read -p 'Enter a week day :' d
+Enter a week day :2
++ '[' 2 -lt 0 ']'
++ '[' 2 -gt 7 ']'
++ '[' 2 -eq 1 ']'
++ '[' 2 -eq 2 ']'
++ echo monday
+monday
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence/programselection
+$ ./weekday.sh
++ read -p 'Enter a week day :' d
+Enter a week day :7
++ '[' 7 -lt 0 ']'
++ '[' 7 -gt 7 ']'
++ '[' 7 -eq 1 ']'
++ '[' 7 -eq 2 ']'
++ '[' 7 -eq 3 ']'
++ '[' 7 -eq 4 ']'
++ '[' 7 -eq 5 ']'
++ '[' 7 -eq 6 ']'
++ '[' 7 -eq 7 ']'
++ echo saturday
+saturday
+
+
+Q11) Read a number 1,10,100,1000 and display unit,ten,hundred....
+-->
+  displaynum
+ 1 #!/bin/bash -x
+ 2
+ 3 read -p "Display a Number:" unit
+ 4 if [ $unit -eq 0 ]
+ 5 then
+ 6         echo "zero"
+ 7 elif [ $unit -eq 10 ]
+ 8 then
+ 9         echo "Ten"
+10 elif [ $unit -eq 100 ]
+11 then
+12         echo "Hundred"
+13 elif [ $unit -eq 1000 ]
+14 then
+15         echo "Thousand"
+16 fi
+
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence/programselection
+$ ./displaynum
++ read -p 'Display a Number:' unit
+Display a Number:0
++ '[' 0 -eq 0 ']'
++ echo zero
+zero
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence/programselection
+$ ./displaynum
++ read -p 'Display a Number:' unit
+Display a Number:1000
++ '[' 1000 -eq 0 ']'
++ '[' 1000 -eq 10 ']'
++ '[' 1000 -eq 100 ']'
++ '[' 1000 -eq 1000 ']'
++ echo Thousand
+Thousand
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence/programselection
+$ ./displaynum
++ read -p 'Display a Number:' unit
+Display a Number:100
++ '[' 100 -eq 0 ']'
++ '[' 100 -eq 10 ']'
++ '[' 100 -eq 100 ']'
++ echo Hundred
+Hundred
+
+12)Enter 3 numbers do following arithmetic operation and find the one that is maximum and minimum
+-->
+#! /bin/bash
+        read -p "Enter 1st number:" number1
+        read -p "Enter 2nd number:" number2
+        read -p "enter 3rd number:" number3
+        echo 1:Expression is a+b*c
+        echo 2:Expression is a%b+c
+        echo 3:Expression is c+a/b
+        echo 4:Expression is a*b+c
+        read -p "enter the choice:" choice
+
+        if [  $choice -eq 1 ]
+        then
+                echo $(( ($number1+$number2)*$number3 ))
+        elif [ $choice -eq 2 ]
+        then
+                echo $(( ($number1%$number2)+$number3 ))
+        elif [ $choice -eq 3 ]
+        then
+                echo $(( ($number3+$number1)/$number2 ))
+        elif [ $choice -eq 4 ]
+        then
+                echo $(( ($number1*$number2)+$number3 ))
+        else
+                echo "incorrect choice"
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence/programselection
+$ ./maxmin.sh
+Enter 1st number:2
+Enter 2nd number:5
+enter 3rd number:5
+1:Expression is a+b*c
+2:Expression is a%b+c
+3:Expression is c+a/b
+4:Expression is a*b+c
+enter the choice:2
+7
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence/programselection
+$ ./maxmin.sh
+Enter 1st number:5
+Enter 2nd number:7
+enter 3rd number:9
+1:Expression is a+b*c
+2:Expression is a%b+c
+3:Expression is c+a/b
+4:Expression is a*b+c
+enter the choice:1
+108
+

@@ -1,0 +1,182 @@
+Q1) Write a program in the following steps
+a. Generates 10 Random 3 Digit number.
+b. Store this random numbers into a array. 
+c. Then find the 2nd largest and the 2nd smallest element without sorting the array.
+-->
+#! /bin/bash
+declare -a arr
+function genrateRandom(){
+        for (( index=0; index<10; index++ ))
+        do
+                randomNumber=$(((RANDOM%900)+100))
+                arr[$index]=$randomNumber
+        done
+        echo ${arr[@]}
+}
+function secondLargest(){
+        secondLarge=$1
+        largest=$1
+        for m in $*
+        do
+                if [[ $m -gt $largest ]]
+                then
+                        secondLarge=$largest
+                        largest=$m
+                elif [[ $m -gt secondLarge ]]
+                then
+                        secondLarge=$m
+                fi
+        done
+echo Largest element in array is: $largest
+echo Second Largest element in array is: $secondLarge
+}
+function secondSmallest()
+{
+secondSmall=$1
+   smallest=$1
+   for m in $*
+   do
+      if [[ $m -lt $smallest ]]
+      then
+         secondSmall=$smallest
+         smallest=$m
+      elif [[ $m -lt secondSmall ]]
+      then
+         secondSmall=$m
+      fi
+   done
+
+echo Smallest element in array is: $smallest
+echo Second Smallest element in array is: $secondSmall
+}
+
+genrateRandom
+secondLargest ${arr[@]}
+secondSmallest ${arr[@]}
+
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programArray
+$ ./arrraypr1
+839 624 375 479 863 956 315 437 794 816
+Largest element in array is: 956
+Second Largest element in array is: 863
+Smallest element in array is: 315
+Second Smallest element in array is: 375
+
+Q2) Extend the above program to sort the array and then find the 2nd largest and the 2nd smallest element.
+-->
+#! /bin/bash
+declare -a arr
+function genrateRandom(){
+        for (( index=0; index<10; index++ ))
+        do
+                randomNumber=$(((RANDOM%900)+100))
+                arr[$index]=$randomNumber
+        done
+        echo ${arr[@]}
+}
+function sorting(){
+        for (( index=0; index<10; index++ ))
+        do
+        temp=0
+        for (( j=0; j<10; j++ ))
+        do
+        if [[ ${arr[j]} -lt ${arr[index]} ]]
+        then
+                        temp=${arr[index]}
+                        arr[index]=${arr[j]}
+                        arr[j]=$temp
+        fi
+        done
+        done
+echo Second Largest in an array ${arr[1]}
+echo Second Smallest in an array ${arr[8]}
+}
+genrateRandom
+sorting
+
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programArray
+$ ./arraypr2
+633 736 806 305 852 128 627 102 364 495
+Second Largest in an array 806
+Second Smallest in an array 128
+
+Q4)Q)Write a Program to show Sum of three Integer adds to ZERO
+-->
+# !/bin/bash -x
+declare -a arr
+flag=0
+arr=(1 3 5 6 -8 9 3 4)
+echo ${arr[@]}
+function checkTriplet(){
+        for (( i=0; i<(${#arr[@]}-2); i++ ))
+        do
+                for (( j=1; j<(${#arr[@]}-1); j++ ))
+                do
+                        for (( k=2; k<(${#arr[@]}); k++ ))
+                        do
+                                if [[ $(((${arr[i]}+${arr[j]}+${arr[k]}))) -eq 0 ]]
+                                then
+                                                echo ${arr[i]} ${arr[j]} ${arr[k]}
+                                else
+                                                flag=1
+                                fi
+                        done
+                done
+        done
+if [[ $flag -eq 1 ]]
+then
+        echo There are no such elements are presents
+fi
+}
+checkTriplet
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programArray
+$ ./arraypr3
+1 3 5 6 -8 9 3 4
+3 5 -8
+3 -8 5
+5 3 -8
+5 -8 3
+5 3 -8
+-8 3 5
+-8 5 3
+-8 3 5
+There are no such elements are presents
+
+Q5)Q) Take a range from 0 - 100, find the digits that are repeated twice like 33, 77, etc and store them in an array
+-->
+#! /bin/bash -x
+declare -a arr
+counter=0
+
+function genrateNumbers(){
+        for(( index=1; index<100; index++ ))
+        do
+                checkNumbers $index
+        done
+}
+function checkNumbers(){
+        numberToCheck=$1
+        reverse=0
+        while [[ $numberToCheck -ne 0 ]]
+        do
+                reminder=$(($numberToCheck%10))
+                reverse=$(($reverse*10+$reminder))
+                numberToCheck=$(($numberToCheck/10))
+        done
+        if [[ $reverse -eq $1 && ${#reverse} -eq 2 ]]
+        then
+                        arr[counter++]=$reverse
+        fi
+}
+genrateNumbers
+echo ${arr[@]}
+
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programArray
+$ ./arraypr4
++echo 11 22 33 44 55 66 77 88 99 
+11 22 33 44 55 66 77 88 99
+

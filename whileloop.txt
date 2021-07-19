@@ -1,0 +1,220 @@
+Q1Write a program that takes a command-line argument n and prints a table of the powers of 2 that are less than or equal to 2^n till 256 is reached...
+-->
+#! /bin/bash -x
+
+#while [ condition ]
+#do
+#statement to execute in loop
+#done
+read -p "Emter a number to find the power:" number
+counter=1
+while [ $counter -le $number ]
+do
+        if [[ $counter -eq 9 ]]
+        then
+                break
+        else
+                exp=$(( 2**$counter ))
+                echo $exp
+                (( counter++ ))
+        fi
+done
+
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programrepetation
+$ ./testwhile1
++ read -p 'Emter a number to find the power:' number
+Emter a number to find the power:9
++ counter=1
++ '[' 1 -le 9 ']'
++ [[ 1 -eq 9 ]]
++ exp=2
++ echo 2
+2
++ ((  counter++  ))
++ '[' 2 -le 9 ']'
++ [[ 2 -eq 9 ]]
++ exp=4
++ echo 4
+4
++ ((  counter++  ))
++ '[' 3 -le 9 ']'
++ [[ 3 -eq 9 ]]
++ exp=8
++ echo 8
+8
++ ((  counter++  ))
++ '[' 4 -le 9 ']'
++ [[ 4 -eq 9 ]]
++ exp=16
++ echo 16
+16
++ ((  counter++  ))
++ '[' 5 -le 9 ']'
++ [[ 5 -eq 9 ]]
++ exp=32
++ echo 32
+32
++ ((  counter++  ))
++ '[' 6 -le 9 ']'
++ [[ 6 -eq 9 ]]
++ exp=64
++ echo 64
+64
++ ((  counter++  ))
++ '[' 7 -le 9 ']'
++ [[ 7 -eq 9 ]]
++ exp=128
++ echo 128
+128
++ ((  counter++  ))
++ '[' 8 -le 9 ']'
++ [[ 8 -eq 9 ]]
++ exp=256
++ echo 256
+256
++ ((  counter++  ))
++ '[' 9 -le 9 ']'
++ [[ 9 -eq 9 ]]
++ break
+
+Q2)Find the Magic Number
+a. Ask the user to think of a number n between 1 to 100
+b. Then check with the user if the number is less then n/2 or greater
+C. Repeat till the Magic Number is reached.. 
+-->
+
+ 1 #! /bin/bash -x
+ 2
+ 3 read -p "Enter a number between 1 to 100 :" number
+ 4 start=1
+ 5 end=100
+ 6 middle=$(( (start+end)/2 ))
+ 7 while [ $start -lt $end ]
+ 8 do
+ 9         if [[ $number -eq $middle ]]
+10         then
+11                 echo $middle
+12                    break
+13         elif [ $number -lt $middle ]
+14         then
+15                 end=$middle
+16                 middle=$(( ($start+$end)/2 ))
+17         else
+18                 start=$middle
+19                 middle=$(( ($start+$end)/2 ))
+20         fi
+21 done
+
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programrepetation
+$ ./testwhilemagic
++ read -p 'Enter a number between 1 to 100 :' number
+Enter a number between 1 to 100 :99
++ start=1
++ end=100
++ middle=50
++ '[' 1 -lt 100 ']'
++ [[ 99 -eq 50 ]]
++ '[' 99 -lt 50 ']'
++ start=50
++ middle=75
++ '[' 50 -lt 100 ']'
++ [[ 99 -eq 75 ]]
++ '[' 99 -lt 75 ']'
++ start=75
++ middle=87
++ '[' 75 -lt 100 ']'
++ [[ 99 -eq 87 ]]
++ '[' 99 -lt 87 ']'
++ start=87
++ middle=93
++ '[' 87 -lt 100 ']'
++ [[ 99 -eq 93 ]]
++ '[' 99 -lt 93 ']'
++ start=93
++ middle=96
++ '[' 93 -lt 100 ']'
++ [[ 99 -eq 96 ]]
++ '[' 99 -lt 96 ']'
++ start=96
++ middle=98
++ '[' 96 -lt 100 ']'
++ [[ 99 -eq 98 ]]
++ '[' 99 -lt 98 ']'
++ start=98
++ middle=99
++ '[' 98 -lt 100 ']'
++ [[ 99 -eq 99 ]]
++ echo 99
+99
++ break
+
+Q3) Extend the Flip Coin problem till either Heads or Tails wins 11 times.
+-->
+#! /bin/bash
+headcounter=0
+tailcounter=0
+while [[ $headcounter -le 10 && $tailcounter -le 10 ]]
+do
+        if [ $(( $RANDOM%2 )) -eq 0 ]
+        then
+                headcounter=$(( $headcounter+1 ))
+        else
+                tailcounter=$(( $tailcounter+1 ))
+        fi
+done
+echo "Head" $headcounter
+echo "Tail" $tailcounter
+
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programrepetation
+$ ./testwhileheadtail
+Head 7
+Tail 11
+
+Q4)Write a Program where a gambler starts with Rs 100 and places Re 1 bet until he/she goes broke i.e. no more money to gamble or reaches the goal of Rs 200. Keeps track of number of times won and number of bets made. 
+-->
+#! /bin/bash -x
+
+stake=100
+goal=200
+numberoftimeswon=0
+betnumber=0
+while [[ $stake -gt 0 && $stake -le $goal ]]
+do
+        betnumber=$(($betnumber+1))
+        if [ $(($RANDOM%2)) -eq 0 ]
+        then
+
+                numberoftimeswon=$(($numberoftimeswon+1))
+                stakes=$(($stakes+1))
+        else
+
+                stakes=$(($stakes-1))
+        fi
+done
+echo number of times you won $numberoftimeswon
+echo Total number of bet placed $betnumber
+echo current stake are $stake
+
+output:
++ numberoftimeswon=17655
++ stakes=200
++ [[ 100 -gt 0 ]]
++ [[ 100 -le 200 ]]
++ betnumber=35111
++ '[' 1 -eq 0 ']'
++ stakes=199
++ [[ 100 -gt 0 ]]
++ [[ 100 -le 200 ]]
++ betnumber=35112
++ '[' 0 -eq 0 ']'
++ numberoftimeswon=17656
++ stakes=200
++ [[ 100 -gt 0 ]]
++ [[ 100 -le 200 ]]
++ betnumber=35113
++ '[' 0 -eq 0 ']'
++ numberoftimeswon=17657
+

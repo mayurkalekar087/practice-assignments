@@ -1,0 +1,179 @@
+Q13) read a single digit number and write the number in word using case
+-->
+ 1 #! /bin/bash -x
+ 2
+ 3 read -p "Enter your choice:" choice
+ 4 #selection
+ 5 case $choice in
+ 6         1)
+ 7                 echo "One" ;;
+ 8         2)
+ 9                 echo "Two" ;;
+10         3)
+11                 echo "Three" ;;
+12         4)
+13                 echo "Four" ;;
+14         5)
+15                 echo "Five" ;;
+16         6)
+17                 echo "six" ;;
+18         7)
+19                 echo "Seven" ;;
+20         8)
+21                 echo "Eight" ;;
+22         9)
+23                 echo "Nine" ;;
+24         10)
+25                 echo "Numbers must be less than 10"
+26 esac
+
+output:
+$ ./casesingledigit
++ read -p 'Enter your choice:' choice
+Enter your choice:7
++ case $choice in
++ echo Seven
+Seven
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence/programselection
+$ ./casesingledigit
++ read -p 'Enter your choice:' choice
+Enter your choice:10
++ case $choice in
++ echo 'Numbers must be less than 10'
+Numbers must be less than 10
+
+Q14)Q)read a number and display the week day using cae
+-->
+ 1 #! /bin/bash -x
+ 2
+ 3 read -p "Enter your choice:" choice
+ 4 #selection
+ 5 case $choice in
+ 6         1)
+ 7                 echo "sunday" ;;
+ 8         2)
+ 9                 echo "Monday" ;;
+10         3)
+11                 echo "Tuesday" ;;
+12         4)
+13                 echo "Wednesday" ;;
+14         5)
+15                 echo "Thursday" ;;
+16         6)
+17                 echo "Friday" ;;
+18         7)
+19                 echo "Saturday" ;;
+20         8)
+21                 echo "Numbers must be less than 8" ;;
+22 esac
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence/programselection
+$ ./caseweek
++ read -p 'Enter your choice:' choice
+Enter your choice:1
++ case $choice in
++ echo sunday
+sunday
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence/programselection
+$ ./caseweek
++ read -p 'Enter your choice:' choice
+Enter your choice:7
++ case $choice in
++ echo Saturday
+Saturday
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence/programselection
+$ ./caseweek
++ read -p 'Enter your choice:' choice
+Enter your choice:8
++ case $choice in
++ echo 'Numbers must be less than 8'
+Numbers must be less than 8
+
+Q15)Q)read a number 1,10,100,1000, etc and display unit, ten,hundred,.... using case
+-->
+ 1 #! /bin/bash -x
+ 2
+ 3 read -p "Enter your choice:" choice
+ 4 #selection
+ 5 case $choice in
+ 6         0)
+ 7                 echo "unit" ;;
+ 8         1)
+ 9                 echo "One" ;;
+10         10)
+11                 echo "Ten" ;;
+12         100)
+13                 echo "Hundred" ;;
+14         1000)
+15                 echo "Thousand" ;;
+16         10000)
+17 esac
+18
+
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence/programselection
+$ ./casedisplaynum
++ read -p 'Enter your choice:' choice
+Enter your choice:10
++ case $choice in
++ echo Ten
+Ten
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence/programselection
+$ ./casedisplaynum
++ read -p 'Enter your choice:' choice
+Enter your choice:100
++ case $choice in
++ echo Hundred
+Hundred
+
+Q16)Q)write a program that takes user input and does unit conversion of different lenght unit 1.feet to inch 2.inch to feet 3.feet to meter 4.meter to feet
+-->
+ 1 #! /bin/bash -x
+ 2
+ 3 read -p "Enter your choice:" choice
+ 4 #selection
+ 5 echo "1) Feet to inch"
+ 6 echo "2) Feet to meter"
+ 7 echo "3) inch to Feet"
+ 8 echo "4) Meter to Feet"
+ 9
+10 case $choice in
+11          1)
+12                 read -p "Enter the distance in feet:" feet
+13                 echo $(( $feet*12 )) "inches" ;;
+14          2)
+15                 read -p "Enter the distance in inches:" inches
+16                 echo $(( $inches/12 )) "feet" ;;
+17          3)
+18                 read -p "Enter the distance in feet:" feet
+19                 echo $(( $feet*0.3048 )) "meter" ;;
+20          4)
+21                 read -p "Enter the distance in meter:" meter
+22                 echo $(( $feet*3.2808 )) "feet" ;;
+23         *)
+24                 echo "Enter a Value Between 1 to 4 " ;;
+25 esac
+
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programsequence/programselection
+$ ./caseunitconversion
++ read -p 'Enter your choice:' choice
+Enter your choice:1
++ echo '1) Feet to inch'
+1) Feet to inch
++ echo '2) Feet to meter'
+2) Feet to meter
++ echo '3) inch to Feet'
+3) inch to Feet
++ echo '4) Meter to Feet'
+4) Meter to Feet
++ case $choice in
++ read -p 'Enter the distance in feet:' feet
+Enter the distance in feet:1
++ echo 12 inches
+12 inches
+

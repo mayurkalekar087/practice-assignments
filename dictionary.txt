@@ -1,0 +1,1247 @@
+Q) Write a program in the following steps 
+a. Roll a die and find the number between 1 to 6
+b. Repeat the Die roll and find the result each time
+C. Store the result in a dictionary
+d. Repeat till any one of the number has reached 10 times 
+e. Find the number that reached maximum times and the one that was for minimum times
+-->
+#! /bin/bash -x
+
+dice1=0
+dice2=0
+dice3=0
+dice4=0
+dice5=0
+dice6=0
+key=0
+min=11
+
+declare -A dictionary
+
+function rollDice() {
+        while [[ dice1 -lt 10 && dice2 -lt 10 && dice3 -lt 10 && dice4 -lt 10 && dice5 -lt 10 && dice6 -lt 10 ]]
+        do
+        number=$((RANDOM % 6 + 1))
+        if [[ $number -eq 1 ]]
+        then
+                        ((dice1++))
+                        dictionary[1]=$dice1
+        elif [[ $number -eq 2 ]]
+        then
+                        ((dice2++))
+                        dictionary[2]=$dice2
+        elif [[ $number -eq 3 ]]
+        then
+                        ((dice3++))
+                        dictionary[3]=$dice3
+        elif [[ $number -eq 4 ]]
+        then
+                        ((dice4++))
+                        dictionary[4]=$dice4
+        elif [[ $number -eq 5 ]]
+        then
+                        ((dice5++))
+                        dictionary[5]=$dice5
+        else
+                        ((dice6++))
+                        dictionary[6]=$dice6
+        fi
+done
+}
+
+function findTheOccurances(){
+size=${#dictionary[@]}
+
+for (( index=1; index<=size; index++ ))
+do
+        if [[ ${dictionary[$index]} -eq 10 ]]
+        then
+                echo "max times occurence $index - ${dictionary[$index]} times"
+        fi
+done
+
+for (( index1=1; index1<=size; index1++ ))
+do
+        if [[ $min -gt ${dictionary[$index1]} ]]
+        then
+                min=${dictionary[$index1]}
+                key=$index1
+        fi
+done
+echo "min time occurence $key - $min times"
+
+}
+rollDice
+findTheOccurances
+
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programdict
+$ ./diceroll
++ dice1=0
++ dice2=0
++ dice3=0
++ dice4=0
++ dice5=0
++ dice6=0
++ key=0
++ min=11
++ declare -A dictionary
++ rollDice
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=5
++ [[ 5 -eq 1 ]]
++ [[ 5 -eq 2 ]]
++ [[ 5 -eq 3 ]]
++ [[ 5 -eq 4 ]]
++ [[ 5 -eq 5 ]]
++ (( dice5++ ))
++ dictionary[5]=1
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=2
++ [[ 2 -eq 1 ]]
++ [[ 2 -eq 2 ]]
++ (( dice2++ ))
++ dictionary[2]=1
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=1
++ [[ 1 -eq 1 ]]
++ (( dice1++ ))
++ dictionary[1]=1
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=1
++ [[ 1 -eq 1 ]]
++ (( dice1++ ))
++ dictionary[1]=2
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=4
++ [[ 4 -eq 1 ]]
++ [[ 4 -eq 2 ]]
++ [[ 4 -eq 3 ]]
++ [[ 4 -eq 4 ]]
++ (( dice4++ ))
++ dictionary[4]=1
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=4
++ [[ 4 -eq 1 ]]
++ [[ 4 -eq 2 ]]
++ [[ 4 -eq 3 ]]
++ [[ 4 -eq 4 ]]
++ (( dice4++ ))
++ dictionary[4]=2
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=2
++ [[ 2 -eq 1 ]]
++ [[ 2 -eq 2 ]]
++ (( dice2++ ))
++ dictionary[2]=2
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=2
++ [[ 2 -eq 1 ]]
++ [[ 2 -eq 2 ]]
++ (( dice2++ ))
++ dictionary[2]=3
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=3
++ [[ 3 -eq 1 ]]
++ [[ 3 -eq 2 ]]
++ [[ 3 -eq 3 ]]
++ (( dice3++ ))
++ dictionary[3]=1
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=4
++ [[ 4 -eq 1 ]]
++ [[ 4 -eq 2 ]]
++ [[ 4 -eq 3 ]]
++ [[ 4 -eq 4 ]]
++ (( dice4++ ))
++ dictionary[4]=3
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=1
++ [[ 1 -eq 1 ]]
++ (( dice1++ ))
++ dictionary[1]=3
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=3
++ [[ 3 -eq 1 ]]
++ [[ 3 -eq 2 ]]
++ [[ 3 -eq 3 ]]
++ (( dice3++ ))
++ dictionary[3]=2
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=5
++ [[ 5 -eq 1 ]]
++ [[ 5 -eq 2 ]]
++ [[ 5 -eq 3 ]]
++ [[ 5 -eq 4 ]]
++ [[ 5 -eq 5 ]]
++ (( dice5++ ))
++ dictionary[5]=2
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=1
++ [[ 1 -eq 1 ]]
++ (( dice1++ ))
++ dictionary[1]=4
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=6
++ [[ 6 -eq 1 ]]
++ [[ 6 -eq 2 ]]
++ [[ 6 -eq 3 ]]
++ [[ 6 -eq 4 ]]
++ [[ 6 -eq 5 ]]
++ (( dice6++ ))
++ dictionary[6]=1
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=2
++ [[ 2 -eq 1 ]]
++ [[ 2 -eq 2 ]]
++ (( dice2++ ))
++ dictionary[2]=4
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=5
++ [[ 5 -eq 1 ]]
++ [[ 5 -eq 2 ]]
++ [[ 5 -eq 3 ]]
++ [[ 5 -eq 4 ]]
++ [[ 5 -eq 5 ]]
++ (( dice5++ ))
++ dictionary[5]=3
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=3
++ [[ 3 -eq 1 ]]
++ [[ 3 -eq 2 ]]
++ [[ 3 -eq 3 ]]
++ (( dice3++ ))
++ dictionary[3]=3
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=5
++ [[ 5 -eq 1 ]]
++ [[ 5 -eq 2 ]]
++ [[ 5 -eq 3 ]]
++ [[ 5 -eq 4 ]]
++ [[ 5 -eq 5 ]]
++ (( dice5++ ))
++ dictionary[5]=4
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=2
++ [[ 2 -eq 1 ]]
++ [[ 2 -eq 2 ]]
++ (( dice2++ ))
++ dictionary[2]=5
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=4
++ [[ 4 -eq 1 ]]
++ [[ 4 -eq 2 ]]
++ [[ 4 -eq 3 ]]
++ [[ 4 -eq 4 ]]
++ (( dice4++ ))
++ dictionary[4]=4
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=3
++ [[ 3 -eq 1 ]]
++ [[ 3 -eq 2 ]]
++ [[ 3 -eq 3 ]]
++ (( dice3++ ))
++ dictionary[3]=4
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=3
++ [[ 3 -eq 1 ]]
++ [[ 3 -eq 2 ]]
++ [[ 3 -eq 3 ]]
++ (( dice3++ ))
++ dictionary[3]=5
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=3
++ [[ 3 -eq 1 ]]
++ [[ 3 -eq 2 ]]
++ [[ 3 -eq 3 ]]
++ (( dice3++ ))
++ dictionary[3]=6
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=2
++ [[ 2 -eq 1 ]]
++ [[ 2 -eq 2 ]]
++ (( dice2++ ))
++ dictionary[2]=6
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=2
++ [[ 2 -eq 1 ]]
++ [[ 2 -eq 2 ]]
++ (( dice2++ ))
++ dictionary[2]=7
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=1
++ [[ 1 -eq 1 ]]
++ (( dice1++ ))
++ dictionary[1]=5
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=1
++ [[ 1 -eq 1 ]]
++ (( dice1++ ))
++ dictionary[1]=6
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=5
++ [[ 5 -eq 1 ]]
++ [[ 5 -eq 2 ]]
++ [[ 5 -eq 3 ]]
++ [[ 5 -eq 4 ]]
++ [[ 5 -eq 5 ]]
++ (( dice5++ ))
++ dictionary[5]=5
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=5
++ [[ 5 -eq 1 ]]
++ [[ 5 -eq 2 ]]
++ [[ 5 -eq 3 ]]
++ [[ 5 -eq 4 ]]
++ [[ 5 -eq 5 ]]
++ (( dice5++ ))
++ dictionary[5]=6
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=5
++ [[ 5 -eq 1 ]]
++ [[ 5 -eq 2 ]]
++ [[ 5 -eq 3 ]]
++ [[ 5 -eq 4 ]]
++ [[ 5 -eq 5 ]]
++ (( dice5++ ))
++ dictionary[5]=7
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=3
++ [[ 3 -eq 1 ]]
++ [[ 3 -eq 2 ]]
++ [[ 3 -eq 3 ]]
++ (( dice3++ ))
++ dictionary[3]=7
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=1
++ [[ 1 -eq 1 ]]
++ (( dice1++ ))
++ dictionary[1]=7
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=6
++ [[ 6 -eq 1 ]]
++ [[ 6 -eq 2 ]]
++ [[ 6 -eq 3 ]]
++ [[ 6 -eq 4 ]]
++ [[ 6 -eq 5 ]]
++ (( dice6++ ))
++ dictionary[6]=2
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=5
++ [[ 5 -eq 1 ]]
++ [[ 5 -eq 2 ]]
++ [[ 5 -eq 3 ]]
++ [[ 5 -eq 4 ]]
++ [[ 5 -eq 5 ]]
++ (( dice5++ ))
++ dictionary[5]=8
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=6
++ [[ 6 -eq 1 ]]
++ [[ 6 -eq 2 ]]
++ [[ 6 -eq 3 ]]
++ [[ 6 -eq 4 ]]
++ [[ 6 -eq 5 ]]
++ (( dice6++ ))
++ dictionary[6]=3
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=2
++ [[ 2 -eq 1 ]]
++ [[ 2 -eq 2 ]]
++ (( dice2++ ))
++ dictionary[2]=8
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=1
++ [[ 1 -eq 1 ]]
++ (( dice1++ ))
++ dictionary[1]=8
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=2
++ [[ 2 -eq 1 ]]
++ [[ 2 -eq 2 ]]
++ (( dice2++ ))
++ dictionary[2]=9
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=3
++ [[ 3 -eq 1 ]]
++ [[ 3 -eq 2 ]]
++ [[ 3 -eq 3 ]]
++ (( dice3++ ))
++ dictionary[3]=8
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ [[ dice3 -lt 10 ]]
++ [[ dice4 -lt 10 ]]
++ [[ dice5 -lt 10 ]]
++ [[ dice6 -lt 10 ]]
++ number=2
++ [[ 2 -eq 1 ]]
++ [[ 2 -eq 2 ]]
++ (( dice2++ ))
++ dictionary[2]=10
++ [[ dice1 -lt 10 ]]
++ [[ dice2 -lt 10 ]]
++ findTheOccurances
++ size=6
++ (( index=1 ))
++ (( index<=size ))
++ [[ 8 -eq 10 ]]
++ (( index++  ))
++ (( index<=size ))
++ [[ 10 -eq 10 ]]
++ echo 'max times occurence 2 - 10 times'
+max times occurence 2 - 10 times
++ (( index++  ))
++ (( index<=size ))
++ [[ 8 -eq 10 ]]
++ (( index++  ))
++ (( index<=size ))
++ [[ 4 -eq 10 ]]
++ (( index++  ))
++ (( index<=size ))
++ [[ 8 -eq 10 ]]
++ (( index++  ))
++ (( index<=size ))
++ [[ 3 -eq 10 ]]
++ (( index++  ))
++ (( index<=size ))
++ (( index1=1 ))
++ (( index1<=size ))
++ [[ 11 -gt 8 ]]
++ min=8
++ key=1
++ (( index1++  ))
++ (( index1<=size ))
++ [[ 8 -gt 10 ]]
++ (( index1++  ))
++ (( index1<=size ))
++ [[ 8 -gt 8 ]]
++ (( index1++  ))
++ (( index1<=size ))
++ [[ 8 -gt 4 ]]
++ min=4
++ key=4
++ (( index1++  ))
++ (( index1<=size ))
++ [[ 4 -gt 8 ]]
++ (( index1++  ))
++ (( index1<=size ))
++ [[ 4 -gt 3 ]]
++ min=3
++ key=6
++ (( index1++  ))
++ (( index1<=size ))
++ echo 'min time occurence 6 - 3 times'
+min time occurence 6 - 3 times
+
+
+
+
+
+
+
+
+Q2)Q)Write a Program to generate a birth month of 50 individuals between the year 92 & 93. Find all the individuals having birthdays in the same month. Store it to finally print.
+-->
+#! /bin/bash -x
+
+declare -A month
+people=1
+month=( ["Jan"]=0 ["feb"]=0 ["march"]=0 ["april"]=0 ["may"]=0  ["Jun"]=0  ["July"]=0  ["aug"]=0  ["sept"]=0  ["oct"]=0  ["nov"]=0  ["dec"]=0  )
+while [[ $people -le 50 ]]
+do
+        number=$((RANDOM%12 + 1))
+        if [[ $number -eq 1 ]]
+        then
+                month[Jan]=$((${month[Jan]}+1))
+        elif [[ $number -eq 2 ]]
+        then
+                month[feb]=$((${month[feb]}+1))
+        elif [[ $number -eq 3 ]]
+        then
+                month[march]=$((${month[march]}+1))
+        elif [[ $number -eq 4 ]]
+        then
+                month[april]=$((${month[april]}+1))
+        elif [[ $number -eq 5 ]]
+        then
+                month[may]=$((${month[may]}+1))
+        elif [[ $number -eq 6 ]]
+        then
+                month[Jun]=$((${month[Jun]}+1))
+        elif [[ $number -eq 7 ]]
+        then
+                month[July]=$((${month[July]}+1))
+        elif [[ $number -eq 8 ]]
+        then
+                month[aug]=$((${month[aug]}+1))
+        elif [[ $number -eq 9 ]]
+        then
+                month[sept]=$((${month[sept]}+1))
+        elif [[ $number -eq 10 ]]
+        then
+                month[oct]=$((${month[oct]}+1))
+        elif [[ $number -eq 11 ]]
+        then
+                month[nov]=$((${month[nov]}+1))
+        else [[ $number -eq 12 ]]
+                month[dec]=$((${month[dec]}+1))
+        fi
+((people++))
+done
+echo ${month[@]}
+echo ${!month[@]}
+
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programdict
+$ ./dictbirth.sh
++ declare -A month
++ people=1
++ month=(["Jan"]=0 ["feb"]=0 ["march"]=0 ["april"]=0 ["may"]=0 ["Jun"]=0 ["July"]=0 ["aug"]=0 ["sept"]=0 ["oct"]=0 ["nov"]=0 ["dec"]=0)
++ [[ 1 -le 50 ]]
++ number=6
++ [[ 6 -eq 1 ]]
++ [[ 6 -eq 2 ]]
++ [[ 6 -eq 3 ]]
++ [[ 6 -eq 4 ]]
++ [[ 6 -eq 5 ]]
++ [[ 6 -eq 6 ]]
++ month[Jun]=1
++ (( people++ ))
++ [[ 2 -le 50 ]]
++ number=5
++ [[ 5 -eq 1 ]]
++ [[ 5 -eq 2 ]]
++ [[ 5 -eq 3 ]]
++ [[ 5 -eq 4 ]]
++ [[ 5 -eq 5 ]]
++ month[may]=1
++ (( people++ ))
++ [[ 3 -le 50 ]]
++ number=6
++ [[ 6 -eq 1 ]]
++ [[ 6 -eq 2 ]]
++ [[ 6 -eq 3 ]]
++ [[ 6 -eq 4 ]]
++ [[ 6 -eq 5 ]]
++ [[ 6 -eq 6 ]]
++ month[Jun]=2
++ (( people++ ))
++ [[ 4 -le 50 ]]
++ number=12
++ [[ 12 -eq 1 ]]
++ [[ 12 -eq 2 ]]
++ [[ 12 -eq 3 ]]
++ [[ 12 -eq 4 ]]
++ [[ 12 -eq 5 ]]
++ [[ 12 -eq 6 ]]
++ [[ 12 -eq 7 ]]
++ [[ 12 -eq 8 ]]
++ [[ 12 -eq 9 ]]
++ [[ 12 -eq 10 ]]
++ [[ 12 -eq 11 ]]
++ [[ 12 -eq 12 ]]
++ month[dec]=1
++ (( people++ ))
++ [[ 5 -le 50 ]]
++ number=2
++ [[ 2 -eq 1 ]]
++ [[ 2 -eq 2 ]]
++ month[feb]=1
++ (( people++ ))
++ [[ 6 -le 50 ]]
++ number=1
++ [[ 1 -eq 1 ]]
++ month[Jan]=1
++ (( people++ ))
++ [[ 7 -le 50 ]]
++ number=8
++ [[ 8 -eq 1 ]]
++ [[ 8 -eq 2 ]]
++ [[ 8 -eq 3 ]]
++ [[ 8 -eq 4 ]]
++ [[ 8 -eq 5 ]]
++ [[ 8 -eq 6 ]]
++ [[ 8 -eq 7 ]]
++ [[ 8 -eq 8 ]]
++ month[aug]=1
++ (( people++ ))
++ [[ 8 -le 50 ]]
++ number=6
++ [[ 6 -eq 1 ]]
++ [[ 6 -eq 2 ]]
++ [[ 6 -eq 3 ]]
++ [[ 6 -eq 4 ]]
++ [[ 6 -eq 5 ]]
++ [[ 6 -eq 6 ]]
++ month[Jun]=3
++ (( people++ ))
++ [[ 9 -le 50 ]]
++ number=4
++ [[ 4 -eq 1 ]]
++ [[ 4 -eq 2 ]]
++ [[ 4 -eq 3 ]]
++ [[ 4 -eq 4 ]]
++ month[april]=1
++ (( people++ ))
++ [[ 10 -le 50 ]]
++ number=12
++ [[ 12 -eq 1 ]]
++ [[ 12 -eq 2 ]]
++ [[ 12 -eq 3 ]]
++ [[ 12 -eq 4 ]]
++ [[ 12 -eq 5 ]]
++ [[ 12 -eq 6 ]]
++ [[ 12 -eq 7 ]]
++ [[ 12 -eq 8 ]]
++ [[ 12 -eq 9 ]]
++ [[ 12 -eq 10 ]]
++ [[ 12 -eq 11 ]]
++ [[ 12 -eq 12 ]]
++ month[dec]=2
++ (( people++ ))
++ [[ 11 -le 50 ]]
++ number=3
++ [[ 3 -eq 1 ]]
++ [[ 3 -eq 2 ]]
++ [[ 3 -eq 3 ]]
++ month[march]=1
++ (( people++ ))
++ [[ 12 -le 50 ]]
++ number=4
++ [[ 4 -eq 1 ]]
++ [[ 4 -eq 2 ]]
++ [[ 4 -eq 3 ]]
++ [[ 4 -eq 4 ]]
++ month[april]=2
++ (( people++ ))
++ [[ 13 -le 50 ]]
++ number=7
++ [[ 7 -eq 1 ]]
++ [[ 7 -eq 2 ]]
++ [[ 7 -eq 3 ]]
++ [[ 7 -eq 4 ]]
++ [[ 7 -eq 5 ]]
++ [[ 7 -eq 6 ]]
++ [[ 7 -eq 7 ]]
++ month[July]=1
++ (( people++ ))
++ [[ 14 -le 50 ]]
++ number=9
++ [[ 9 -eq 1 ]]
++ [[ 9 -eq 2 ]]
++ [[ 9 -eq 3 ]]
++ [[ 9 -eq 4 ]]
++ [[ 9 -eq 5 ]]
++ [[ 9 -eq 6 ]]
++ [[ 9 -eq 7 ]]
++ [[ 9 -eq 8 ]]
++ [[ 9 -eq 9 ]]
++ month[sept]=1
++ (( people++ ))
++ [[ 15 -le 50 ]]
++ number=3
++ [[ 3 -eq 1 ]]
++ [[ 3 -eq 2 ]]
++ [[ 3 -eq 3 ]]
++ month[march]=2
++ (( people++ ))
++ [[ 16 -le 50 ]]
++ number=6
++ [[ 6 -eq 1 ]]
++ [[ 6 -eq 2 ]]
++ [[ 6 -eq 3 ]]
++ [[ 6 -eq 4 ]]
++ [[ 6 -eq 5 ]]
++ [[ 6 -eq 6 ]]
++ month[Jun]=4
++ (( people++ ))
++ [[ 17 -le 50 ]]
++ number=3
++ [[ 3 -eq 1 ]]
++ [[ 3 -eq 2 ]]
++ [[ 3 -eq 3 ]]
++ month[march]=3
++ (( people++ ))
++ [[ 18 -le 50 ]]
++ number=8
++ [[ 8 -eq 1 ]]
++ [[ 8 -eq 2 ]]
++ [[ 8 -eq 3 ]]
++ [[ 8 -eq 4 ]]
++ [[ 8 -eq 5 ]]
++ [[ 8 -eq 6 ]]
++ [[ 8 -eq 7 ]]
++ [[ 8 -eq 8 ]]
++ month[aug]=2
++ (( people++ ))
++ [[ 19 -le 50 ]]
++ number=6
++ [[ 6 -eq 1 ]]
++ [[ 6 -eq 2 ]]
++ [[ 6 -eq 3 ]]
++ [[ 6 -eq 4 ]]
++ [[ 6 -eq 5 ]]
++ [[ 6 -eq 6 ]]
++ month[Jun]=5
++ (( people++ ))
++ [[ 20 -le 50 ]]
++ number=10
++ [[ 10 -eq 1 ]]
++ [[ 10 -eq 2 ]]
++ [[ 10 -eq 3 ]]
++ [[ 10 -eq 4 ]]
++ [[ 10 -eq 5 ]]
++ [[ 10 -eq 6 ]]
++ [[ 10 -eq 7 ]]
++ [[ 10 -eq 8 ]]
++ [[ 10 -eq 9 ]]
++ [[ 10 -eq 10 ]]
++ month[oct]=1
++ (( people++ ))
++ [[ 21 -le 50 ]]
++ number=7
++ [[ 7 -eq 1 ]]
++ [[ 7 -eq 2 ]]
++ [[ 7 -eq 3 ]]
++ [[ 7 -eq 4 ]]
++ [[ 7 -eq 5 ]]
++ [[ 7 -eq 6 ]]
++ [[ 7 -eq 7 ]]
++ month[July]=2
++ (( people++ ))
++ [[ 22 -le 50 ]]
++ number=11
++ [[ 11 -eq 1 ]]
++ [[ 11 -eq 2 ]]
++ [[ 11 -eq 3 ]]
++ [[ 11 -eq 4 ]]
++ [[ 11 -eq 5 ]]
++ [[ 11 -eq 6 ]]
++ [[ 11 -eq 7 ]]
++ [[ 11 -eq 8 ]]
++ [[ 11 -eq 9 ]]
++ [[ 11 -eq 10 ]]
++ [[ 11 -eq 11 ]]
++ month[nov]=1
++ (( people++ ))
++ [[ 23 -le 50 ]]
++ number=4
++ [[ 4 -eq 1 ]]
++ [[ 4 -eq 2 ]]
++ [[ 4 -eq 3 ]]
++ [[ 4 -eq 4 ]]
++ month[april]=3
++ (( people++ ))
++ [[ 24 -le 50 ]]
++ number=11
++ [[ 11 -eq 1 ]]
++ [[ 11 -eq 2 ]]
++ [[ 11 -eq 3 ]]
++ [[ 11 -eq 4 ]]
++ [[ 11 -eq 5 ]]
++ [[ 11 -eq 6 ]]
++ [[ 11 -eq 7 ]]
++ [[ 11 -eq 8 ]]
++ [[ 11 -eq 9 ]]
++ [[ 11 -eq 10 ]]
++ [[ 11 -eq 11 ]]
++ month[nov]=2
++ (( people++ ))
++ [[ 25 -le 50 ]]
++ number=5
++ [[ 5 -eq 1 ]]
++ [[ 5 -eq 2 ]]
++ [[ 5 -eq 3 ]]
++ [[ 5 -eq 4 ]]
++ [[ 5 -eq 5 ]]
++ month[may]=2
++ (( people++ ))
++ [[ 26 -le 50 ]]
++ number=3
++ [[ 3 -eq 1 ]]
++ [[ 3 -eq 2 ]]
++ [[ 3 -eq 3 ]]
++ month[march]=4
++ (( people++ ))
++ [[ 27 -le 50 ]]
++ number=8
++ [[ 8 -eq 1 ]]
++ [[ 8 -eq 2 ]]
++ [[ 8 -eq 3 ]]
++ [[ 8 -eq 4 ]]
++ [[ 8 -eq 5 ]]
++ [[ 8 -eq 6 ]]
++ [[ 8 -eq 7 ]]
++ [[ 8 -eq 8 ]]
++ month[aug]=3
++ (( people++ ))
++ [[ 28 -le 50 ]]
++ number=8
++ [[ 8 -eq 1 ]]
++ [[ 8 -eq 2 ]]
++ [[ 8 -eq 3 ]]
++ [[ 8 -eq 4 ]]
++ [[ 8 -eq 5 ]]
++ [[ 8 -eq 6 ]]
++ [[ 8 -eq 7 ]]
++ [[ 8 -eq 8 ]]
++ month[aug]=4
++ (( people++ ))
++ [[ 29 -le 50 ]]
++ number=2
++ [[ 2 -eq 1 ]]
++ [[ 2 -eq 2 ]]
++ month[feb]=2
++ (( people++ ))
++ [[ 30 -le 50 ]]
++ number=6
++ [[ 6 -eq 1 ]]
++ [[ 6 -eq 2 ]]
++ [[ 6 -eq 3 ]]
++ [[ 6 -eq 4 ]]
++ [[ 6 -eq 5 ]]
++ [[ 6 -eq 6 ]]
++ month[Jun]=6
++ (( people++ ))
++ [[ 31 -le 50 ]]
++ number=5
++ [[ 5 -eq 1 ]]
++ [[ 5 -eq 2 ]]
++ [[ 5 -eq 3 ]]
++ [[ 5 -eq 4 ]]
++ [[ 5 -eq 5 ]]
++ month[may]=3
++ (( people++ ))
++ [[ 32 -le 50 ]]
++ number=4
++ [[ 4 -eq 1 ]]
++ [[ 4 -eq 2 ]]
++ [[ 4 -eq 3 ]]
++ [[ 4 -eq 4 ]]
++ month[april]=4
++ (( people++ ))
++ [[ 33 -le 50 ]]
++ number=4
++ [[ 4 -eq 1 ]]
++ [[ 4 -eq 2 ]]
++ [[ 4 -eq 3 ]]
++ [[ 4 -eq 4 ]]
++ month[april]=5
++ (( people++ ))
++ [[ 34 -le 50 ]]
++ number=11
++ [[ 11 -eq 1 ]]
++ [[ 11 -eq 2 ]]
++ [[ 11 -eq 3 ]]
++ [[ 11 -eq 4 ]]
++ [[ 11 -eq 5 ]]
++ [[ 11 -eq 6 ]]
++ [[ 11 -eq 7 ]]
++ [[ 11 -eq 8 ]]
++ [[ 11 -eq 9 ]]
++ [[ 11 -eq 10 ]]
++ [[ 11 -eq 11 ]]
++ month[nov]=3
++ (( people++ ))
++ [[ 35 -le 50 ]]
++ number=11
++ [[ 11 -eq 1 ]]
++ [[ 11 -eq 2 ]]
++ [[ 11 -eq 3 ]]
++ [[ 11 -eq 4 ]]
++ [[ 11 -eq 5 ]]
++ [[ 11 -eq 6 ]]
++ [[ 11 -eq 7 ]]
++ [[ 11 -eq 8 ]]
++ [[ 11 -eq 9 ]]
++ [[ 11 -eq 10 ]]
++ [[ 11 -eq 11 ]]
++ month[nov]=4
++ (( people++ ))
++ [[ 36 -le 50 ]]
++ number=12
++ [[ 12 -eq 1 ]]
++ [[ 12 -eq 2 ]]
++ [[ 12 -eq 3 ]]
++ [[ 12 -eq 4 ]]
++ [[ 12 -eq 5 ]]
++ [[ 12 -eq 6 ]]
++ [[ 12 -eq 7 ]]
++ [[ 12 -eq 8 ]]
++ [[ 12 -eq 9 ]]
++ [[ 12 -eq 10 ]]
++ [[ 12 -eq 11 ]]
++ [[ 12 -eq 12 ]]
++ month[dec]=3
++ (( people++ ))
++ [[ 37 -le 50 ]]
++ number=8
++ [[ 8 -eq 1 ]]
++ [[ 8 -eq 2 ]]
++ [[ 8 -eq 3 ]]
++ [[ 8 -eq 4 ]]
++ [[ 8 -eq 5 ]]
++ [[ 8 -eq 6 ]]
++ [[ 8 -eq 7 ]]
++ [[ 8 -eq 8 ]]
++ month[aug]=5
++ (( people++ ))
++ [[ 38 -le 50 ]]
++ number=11
++ [[ 11 -eq 1 ]]
++ [[ 11 -eq 2 ]]
++ [[ 11 -eq 3 ]]
++ [[ 11 -eq 4 ]]
++ [[ 11 -eq 5 ]]
++ [[ 11 -eq 6 ]]
++ [[ 11 -eq 7 ]]
++ [[ 11 -eq 8 ]]
++ [[ 11 -eq 9 ]]
++ [[ 11 -eq 10 ]]
++ [[ 11 -eq 11 ]]
++ month[nov]=5
++ (( people++ ))
++ [[ 39 -le 50 ]]
++ number=12
++ [[ 12 -eq 1 ]]
++ [[ 12 -eq 2 ]]
++ [[ 12 -eq 3 ]]
++ [[ 12 -eq 4 ]]
++ [[ 12 -eq 5 ]]
++ [[ 12 -eq 6 ]]
++ [[ 12 -eq 7 ]]
++ [[ 12 -eq 8 ]]
++ [[ 12 -eq 9 ]]
++ [[ 12 -eq 10 ]]
++ [[ 12 -eq 11 ]]
++ [[ 12 -eq 12 ]]
++ month[dec]=4
++ (( people++ ))
++ [[ 40 -le 50 ]]
++ number=1
++ [[ 1 -eq 1 ]]
++ month[Jan]=2
++ (( people++ ))
++ [[ 41 -le 50 ]]
++ number=5
++ [[ 5 -eq 1 ]]
++ [[ 5 -eq 2 ]]
++ [[ 5 -eq 3 ]]
++ [[ 5 -eq 4 ]]
++ [[ 5 -eq 5 ]]
++ month[may]=4
++ (( people++ ))
++ [[ 42 -le 50 ]]
++ number=5
++ [[ 5 -eq 1 ]]
++ [[ 5 -eq 2 ]]
++ [[ 5 -eq 3 ]]
++ [[ 5 -eq 4 ]]
++ [[ 5 -eq 5 ]]
++ month[may]=5
++ (( people++ ))
++ [[ 43 -le 50 ]]
++ number=8
++ [[ 8 -eq 1 ]]
++ [[ 8 -eq 2 ]]
++ [[ 8 -eq 3 ]]
++ [[ 8 -eq 4 ]]
++ [[ 8 -eq 5 ]]
++ [[ 8 -eq 6 ]]
++ [[ 8 -eq 7 ]]
++ [[ 8 -eq 8 ]]
++ month[aug]=6
++ (( people++ ))
++ [[ 44 -le 50 ]]
++ number=10
++ [[ 10 -eq 1 ]]
++ [[ 10 -eq 2 ]]
++ [[ 10 -eq 3 ]]
++ [[ 10 -eq 4 ]]
++ [[ 10 -eq 5 ]]
++ [[ 10 -eq 6 ]]
++ [[ 10 -eq 7 ]]
++ [[ 10 -eq 8 ]]
++ [[ 10 -eq 9 ]]
++ [[ 10 -eq 10 ]]
++ month[oct]=2
++ (( people++ ))
++ [[ 45 -le 50 ]]
++ number=11
++ [[ 11 -eq 1 ]]
++ [[ 11 -eq 2 ]]
++ [[ 11 -eq 3 ]]
++ [[ 11 -eq 4 ]]
++ [[ 11 -eq 5 ]]
++ [[ 11 -eq 6 ]]
++ [[ 11 -eq 7 ]]
++ [[ 11 -eq 8 ]]
++ [[ 11 -eq 9 ]]
++ [[ 11 -eq 10 ]]
++ [[ 11 -eq 11 ]]
++ month[nov]=6
++ (( people++ ))
++ [[ 46 -le 50 ]]
++ number=11
++ [[ 11 -eq 1 ]]
++ [[ 11 -eq 2 ]]
++ [[ 11 -eq 3 ]]
++ [[ 11 -eq 4 ]]
++ [[ 11 -eq 5 ]]
++ [[ 11 -eq 6 ]]
++ [[ 11 -eq 7 ]]
++ [[ 11 -eq 8 ]]
++ [[ 11 -eq 9 ]]
++ [[ 11 -eq 10 ]]
++ [[ 11 -eq 11 ]]
++ month[nov]=7
++ (( people++ ))
++ [[ 47 -le 50 ]]
++ number=11
++ [[ 11 -eq 1 ]]
++ [[ 11 -eq 2 ]]
++ [[ 11 -eq 3 ]]
++ [[ 11 -eq 4 ]]
++ [[ 11 -eq 5 ]]
++ [[ 11 -eq 6 ]]
++ [[ 11 -eq 7 ]]
++ [[ 11 -eq 8 ]]
++ [[ 11 -eq 9 ]]
++ [[ 11 -eq 10 ]]
++ [[ 11 -eq 11 ]]
++ month[nov]=8
++ (( people++ ))
++ [[ 48 -le 50 ]]
++ number=3
++ [[ 3 -eq 1 ]]
++ [[ 3 -eq 2 ]]
++ [[ 3 -eq 3 ]]
++ month[march]=5
++ (( people++ ))
++ [[ 49 -le 50 ]]
++ number=8
++ [[ 8 -eq 1 ]]
++ [[ 8 -eq 2 ]]
++ [[ 8 -eq 3 ]]
++ [[ 8 -eq 4 ]]
++ [[ 8 -eq 5 ]]
++ [[ 8 -eq 6 ]]
++ [[ 8 -eq 7 ]]
++ [[ 8 -eq 8 ]]
++ month[aug]=7
++ (( people++ ))
++ [[ 50 -le 50 ]]
++ number=5
++ [[ 5 -eq 1 ]]
++ [[ 5 -eq 2 ]]
++ [[ 5 -eq 3 ]]
++ [[ 5 -eq 4 ]]
++ [[ 5 -eq 5 ]]
++ month[may]=6
++ (( people++ ))
++ [[ 51 -le 50 ]]
++ echo 2 2 2 6 6 5 4 7 5 1 8 2
+2 2 2 6 6 5 4 7 5 1 8 2
++ echo oct Jan feb may Jun april dec aug march sept nov July
+oct Jan feb may Jun april dec aug march sept nov July

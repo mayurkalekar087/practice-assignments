@@ -1,0 +1,170 @@
+Q1)Help user find degF or degC based on their Conversion Selection. Use Case Statement and ensure that the inputs are within the Freezing Point ( 0 °C/32 °F ) and the Boiling Point of Water ( 100 °C / 212 °F )
+a. degF = (degC * 9/5) + 32 
+b. degC = (degF-32) * 5/9
+-->
+#! /bin/bash
+function farenheitToCelcius(){
+                read -p "Enter the temprature in farenheit: " tempInF
+                if [[ $tempInF -ge 32 && $tempInF -le 212 ]]
+                then
+                        tempInC=$(( $tempInF-32*5/9 ))
+                        echo $tempInF Farenheight = $tempInC Celcius
+                else
+                        echo Temprature out of limit
+                fi
+}
+function celciusToFarenheit(){
+                read -p "Enter the temprature in celcius: " tempInC
+                if [[ $tempInC -ge 0 && $tempInC -le 100 ]]
+                then
+                        tempInF=$(( $tempInC*9/5+32 ))
+                        echo $tempInC Celcius = $tempInF Farenheit
+                else
+                        echo Temprature is out of limit
+                fi
+
+}
+echo 1 for Farenheit To Celcius
+echo 2 for Celcius To Farenheit
+read -p "Enter your choice:" choice
+case $choice in
+                1)
+                        farenheitToCelcius;;
+                2)
+                        celciusToFarenheit;;
+                *)
+                        echo This key is not associate with anything;;
+esac
+
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programrepetation/programfumction
+$ ./functiondeg
+1 for Farenheit To Celcius
+2 for Celcius To Farenheit
+Enter your choice:5
+This key is not associate with anything
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programrepetation/programfumction
+$ ./functiondeg
+1 for Farenheit To Celcius
+2 for Celcius To Farenheit
+Enter your choice:1
+Enter the temprature in farenheit: 54
+54 Farenheight = 37 Celcius
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programrepetation/programfumction
+$ ./functiondeg
+1 for Farenheit To Celcius
+2 for Celcius To Farenheit
+Enter your choice:2
+Enter the temprature in celcius: 45
+45 Celcius = 113 Farenheit
+
+Q2) Write a function to check if the two numbers are Palindromes
+-->
+#! /bin/bash
+function isPalindrome(){
+        read -p "Enter the number to check: " number1
+        read -p "Enter the number to check: " number2
+        reverse=0
+        while [[ $number1 -ne 0 ]]
+        do
+                reminder=$(($number1%10))
+                reverse=$(($reverse*10))
+                reverse=$(($reminder +$reverse))
+                number1=$(($number1/10))
+        done
+
+        if [[ $number2 -eq $reverse ]]
+        then
+                echo "Numbers are palindrome"
+        else
+                echo "Numbers are Not Palindrome"
+        fi
+}
+isPalindrome
+
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programrepetation/programfumction
+$ ./functionpalli
+Enter the number to check: 121
+Enter the number to check: 121
+Numbers are palindrome
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programrepetation/programfumction
+$ ./functionpalli
+Enter the number to check: 200
+Enter the number to check: 200
+Numbers are Not Palindrome
+
+Q3) Take a number from user and check if the number is a Prime then show that its palindrome is also prime
+a. Write function check if number is Prime
+b. Write function to get the Palindrome.
+C. Check if the Palindrome number is also prime
+-->
+#! /bin/bash
+
+reverse=0
+read -p "Enter the number to check: " number
+function isPrime(){
+        checkNumber=$1
+        for (( index=2; index<=$checkNumber/2; index++ ))
+        do
+                if [[ $checkNumber%$index -eq 0 ]]
+                then
+                        flag=0
+                else
+                        flag=1
+                fi
+        done
+        if [[ $flag -eq 1 ]]
+        then
+                echo $checkNumber is Prime Number
+        else
+                echo $checkNumber is Not Prime Number
+        fi
+
+}
+
+function isPalindrome(){
+        firstNumber=$1
+        while [[ $firstNumber -ne 0 ]]
+        do
+                reminder=$(($firstNumber%10))
+                reverse=$(($reverse*10))
+                reverse=$(($reminder +$reverse))
+                firstNumber=$(($firstNumber/10))
+        done
+
+        if [[ $1 -eq $reverse ]]
+        then
+                echo "$1 and $reverse are palindrome"
+        else
+      echo "Numbers are Not Palindrome"
+        fi
+}
+isPrime $number
+isPalindrome $number
+isPrime $reverse
+
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programrepetation/programfumction
+$ ./functionp
+Enter the number to check: 20
+20 is Not Prime Number
+Numbers are Not Palindrome
+2 is Not Prime Number
+
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/programrepetation/programfumction
+$ ./functionp
+Enter the number to check: 121
+121 is Prime Number
+121 and 121 are palindrome
+121 is Prime Number
+
+
+
+
+
+
+

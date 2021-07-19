@@ -1,0 +1,159 @@
+ 
+Q1) Execute command "hello" and "ls" and check its execution status and print whether command executed successfol or not.
+-->
+	#! /bin/bash
+	if [ -d hello ]
+	then
+	        echo "The hello command exists."
+	else
+      		  echo "The hello command dose not exist."
+	fi
+
+	if [ -d ls ]
+	then
+        	echo "The ls command exists."
+	else
+       		 echo "The ls command dose not exist."
+	fi
+output:
+	$ ./execute.sh
+	The hello command dose not exist.
+	The ls command does not exists.
+
+
+Q2)Archive the files from /var/log folder which have modifiedn7 days ago and move it to your backup folder
+-->
+	#! /bin/bash
+	find -type f -mtime +2 -ls
+
+
+Q3) Print list of web respose code count in theuniqe sorted order at specific hours.
+Answer->
+	$ cat access.log | awk '{print $9}' | sort | uniq -c
+   	3176 200
+      	8 206
+     	26 304
+
+4)Print list of last 4 frequently access unique urls at particular hourse from /var/log/httpd/acceess.log
+output-->
+	$ cat access.log | awk '{print $7}' | sort | uniq -c | tail -4
+      	1 /vbulletin5/
+    	199 /vendor.js
+    	 15 /vendor.js.map
+     	 4 /wp-login.php
+
+Q5) Print last 4 frequently access unique urls at particular hourse from /var/log/httpd/acceess.log
+Answer->
+	$ cat access.log | awk '{print $7}' | sort | uniq -c | tail -4
+     	 1 /vbulletin5/
+   	 199 /vendor.js
+    	 15 /vendor.js.map
+     	 4 /wp-login.php
+
+Q6)Check if a folder exist or not. If it is not present, create it
+-->
+	 #! /bin/bash
+	if [ -d /c/Users/desktop/TerminalCommands/pratik ]
+	then
+       		 echo "Directory $/c/Users/desktop/TerminalCommands/rishi exist"
+	else
+       		 mkdir pratik
+	fi
+
+Q7) create process list table display process id, parent process id, command name , % of memory cansumption , %of cpu utilization
+-->
+$ nano processlist.sh
+
+$ ./processlist.sh
++ ps -elf
+     UID     PID    PPID  TTY        STIME COMMAND
+    ASUS     471     338 pty0     23:45:36 /usr/bin/bash
+    ASUS     338     337 pty0     23:38:18 /usr/bin/bash
+    ASUS     472     471 pty0     23:45:37 /usr/bin/ps
+    ASUS     337       1 ?        23:38:18 /usr/bin/mintty
+
+Q8)Data analysis and manipulation(awk)
+i) Print employee name and total pay who has base pay greater than 10000
+-->
+$ cat data.csv | awk '{if($4>10000){print $2,$7} }'
+EmployeeName TotalPay
+NATHANIEL 567595
+GARY 538909
+ALBERT 335279
+CHRISTOPHER 332343
+PATRICK 326373
+DAVID 316285
+ALSON 315981
+DAVID 307899
+JOANNE 302377
+PATRICIA 297608
+EDWARD 294580
+
+ii)what is the aggregate total pay of employee whose jobtitle is 'CAPTAIN'
+-->
+$ cat data.csv | grep -i captain
+2  GARY         CAPTAIN         155966  245131      137811   538909   538909
+3  ALBERT       CAPTAIN         212739  106088      16452    335279   335279
+12 PATRICIA     CAPTAIN         99722   87082       110804   297608   297608
+
+$ cat data.csv | grep -i captain | awk '{sum=sum+$7} END {print sum/3}'
+390599
+
+$ cat data.csv | grep -i captain | awk '{sum=sum+$7} END {print sum}'
+1171796
+
+iii) print job title and overtimepaywho hasovertimepay is between 7000 and 10000
+-->
+$ cat data.csv | awk '{if($5>7000)if($5<10000){print $3,$5}}'
+DEPUTYCHIEF 9737
+ASSTDEPUTY 8601
+
+iv) print average base pay
+-->
+$  cat data.csv | awk '{sum=sum+$4} END {print sum/13}'
+145821
+
+
+Q9) Move files from one folder to the respective folder
+-->
+	#! /bin/bash
+	for file in `ls *.txt`
+	do
+        	foldername=`echo $file | awk -F. '{print $1}'`
+        	rm -r $foldername
+        	mkdir $foldername
+        	mv $file $foldername
+	done
+
+	ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/abc
+	$ ls
+	abc.txt
+
+	ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/def
+	$ ls
+	def.txt
+
+	ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/ghi
+	$ ls
+	ghi.txt
+
+	ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCommands/jkl
+	$ ls
+	jkl.txt
+	ls 
+
+Q10) Append current date to all log files name which has extension .log.1 from folder
+-->
+ 1 #! /bin/bash
+ 2         for file in `ls *.log.1`
+ 3         do
+ 4                 fname=`echo $file | awk -F. '{print $1}'`
+ 5                 mv $file $fname-$(date +%d%m%y).log
+ 6         done
+ 7
+output:
+ASUS@LAPTOP-58MEKRN6 MINGW64 ~/Desktop/TerminalCod/mayur
+$ ls *.log
+abc-080721.log  def-080721.log  ghi-080721.log  jkl-080721.log  mno-080721.log
+
+
